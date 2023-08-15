@@ -9,9 +9,6 @@ const teams = [
     }
 ]
 
-let home = 0
-let away = 0
-
 function scoreHome1() {
     console.log('clicked home +1')
     let home = teams[0]
@@ -59,9 +56,17 @@ function updateScore() {
 
 function reset() {
     console.log('clicked reset')
-    let home = 0
-    let away = 0
-    document.getElementById('home-score').innerText = home
-    document.getElementById('away-score').innerText = away
+    let home = teams[0]
+    let away = teams[1]
+    if (home.points == 0) {
+        home.points += 1
+    }
+    if (away.points == 0) {
+        away.points += 1
+    }
+    home.points %= home.points
+    away.points %= away.points
+
+    updateScore()
 }
 
